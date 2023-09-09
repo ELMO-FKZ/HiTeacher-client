@@ -1,5 +1,6 @@
 import { useEffect, useContext } from "react"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { ClassesContext } from "./contexts/ClassesContext"
 import Layout from "./components/layout/Layout"
 import Dashboard from "./pages/dashboard/Dashboard"
 import Profile from "./pages/profile/Profile"
@@ -34,6 +35,10 @@ function App() {
   const AdminAuth = ({ children }) => {
     return user?.user.role == "Admin" ? children : <Navigate to="/profile" />
   }
+  const { getClasses } = useContext(ClassesContext)
+  useEffect(() => {
+    getClasses()
+  }, [])
 
   return (
     <>

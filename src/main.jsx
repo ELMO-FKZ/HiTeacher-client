@@ -12,7 +12,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContextProvider>
       <TopSideBarsContextProvider>
+        <ClassesContextProvider>
     <App />
+        </ClassesContextProvider> 
       </TopSideBarsContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,
