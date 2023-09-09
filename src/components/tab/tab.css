@@ -1,0 +1,16 @@
+.tab {
+overflow-x: auto;
+margin-bottom: 3rem; }
+    .tab__list {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.8rem; }
+        .tab__list-item {
+        display: inline-block; }
+            .tab__link {
+            display: block;
+            white-space: nowrap;
+            padding-block: 1rem; }
+            .tab__link--active {
+            color: var(--dark-grape);
+            border-bottom: 2px solid var(--dark-grape); }
