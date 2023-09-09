@@ -11,7 +11,9 @@ import "./index.css"
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContextProvider>
+      <TopSideBarsContextProvider>
     <App />
+      </TopSideBarsContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,
 )
