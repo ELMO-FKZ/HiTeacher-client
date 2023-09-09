@@ -13,7 +13,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <AuthContextProvider>
       <TopSideBarsContextProvider>
         <ClassesContextProvider>
-    <App />
+          <StudentsContextProvider>
+            <App />
+          </StudentsContextProvider>
         </ClassesContextProvider> 
       </TopSideBarsContextProvider>
     </AuthContextProvider>

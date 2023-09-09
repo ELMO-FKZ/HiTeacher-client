@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { ClassesContext } from "./contexts/ClassesContext"
+import { StudentsContext } from "./contexts/StudentsContext"
 import Layout from "./components/layout/Layout"
 import Dashboard from "./pages/dashboard/Dashboard"
 import Profile from "./pages/profile/Profile"
@@ -25,6 +26,7 @@ import { useAuthContext } from "./hooks/useAuthContext"
 import PropTypes from "prop-types"
 
 function App() {
+
   const { user } = useAuthContext()
   const RequireAuth = ({ children }) => {
     return user ? children : <Navigate to="/login" />
@@ -35,9 +37,16 @@ function App() {
   const AdminAuth = ({ children }) => {
     return user?.user.role == "Admin" ? children : <Navigate to="/profile" />
   }
+
   const { getClasses } = useContext(ClassesContext)
+  const { getStudents } = useContext(StudentsContext)
+
   useEffect(() => {
     getClasses()
+  }, [])
+
+  useEffect(() => {
+    getStudents()
   }, [])
 
   return (
