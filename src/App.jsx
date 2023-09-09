@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { useEffect, useContext } from "react"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Layout from "./components/layout/Layout"
 import Dashboard from "./pages/dashboard/Dashboard"
 import Profile from "./pages/profile/Profile"
@@ -19,44 +20,55 @@ import ViewBehaviour from "./pages/viewBehaviour/ViewBehaviour"
 import EditBehaviour from "./pages/editBehaviour/EditBehaviour"
 import Login from "./pages/login/Login"
 import NotFound from "./pages/notFound/NotFound"
+import { useAuthContext } from "./hooks/useAuthContext"
 import PropTypes from "prop-types"
 
 function App() {
+  const { user } = useAuthContext()
+  const RequireAuth = ({ children }) => {
+    return user ? children : <Navigate to="/login" />
+  }
+  const NoRequireAuth = ({children}) => {
+    return !user ? children : <Navigate to="/" />
+  }
+  const AdminAuth = ({ children }) => {
+    return user?.user.role == "Admin" ? children : <Navigate to="/profile" />
+  }
 
   return (
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Dashboard />} />
+        <Route path="/" element={<RequireAuth><Layout /></RequireAuth>}>
+          <Route index element={<RequireAuth><Dashboard /></RequireAuth>} />
           <Route path="profile" >
-            <Route index element={<Profile />} />
-            <Route path="new" element={<NewProfile />} />
+            <Route index element={<RequireAuth><Profile /></RequireAuth>} />
+            <Route path="new" element={<AdminAuth><NewProfile /></AdminAuth>} />
           </Route>
           <Route path="classes" >
-            <Route index element={<Classes/>} />
-            <Route path="new" element={<NewClass />} /> 
-            <Route path="edit/:name" element={<EditClass />} /> 
+            <Route index element={<RequireAuth><Classes/></RequireAuth>} />
+            <Route path="new" element={<RequireAuth><NewClass /></RequireAuth>} /> 
+            <Route path="edit/:name" element={<RequireAuth><EditClass /></RequireAuth>} /> 
           </Route>
           <Route path="students" >
-            <Route index element={<Students />} />
-            <Route path="new" element={<NewStudent />} />
-            <Route path="view/:id" element={<ViewStudent />} />
-            <Route path="edit/:id/:code" element={<EditStudent />} />
+            <Route index element={<RequireAuth><Students /></RequireAuth>} />
+            <Route path="new" element={<RequireAuth><NewStudent /></RequireAuth>} />
+            <Route path="view/:id" element={<RequireAuth><ViewStudent /></RequireAuth>} />
+            <Route path="edit/:id/:code" element={<RequireAuth><EditStudent /></RequireAuth>} />
           </Route>
           <Route path="attendance" >
-            <Route index element={<Attendance />} />
-            <Route path="new" element={<NewAttendance />} />
-            <Route path="delete" element={<DeleteAttendance />} />
+            <Route index element={<RequireAuth><Attendance /></RequireAuth>} />
+            <Route path="new" element={<RequireAuth><NewAttendance /></RequireAuth>} />
+            <Route path="delete" element={<RequireAuth><DeleteAttendance /></RequireAuth>} />
           </Route >
           <Route path="behaviour">
-            <Route index element={<Behaviour />} />
-            <Route path="new/:id" element={<NewBehaviour />} />
-            <Route path="view/:id" element={<ViewBehaviour />} />
-            <Route path="edit/:id" element={<EditBehaviour />} />
+            <Route index element={<RequireAuth><Behaviour /></RequireAuth>} />
+            <Route path="new/:id" element={<RequireAuth><NewBehaviour /></RequireAuth>} />
+            <Route path="view/:id" element={<RequireAuth><ViewBehaviour /></RequireAuth>} />
+            <Route path="edit/:id" element={<RequireAuth><EditBehaviour /></RequireAuth>} />
           </Route>
         </Route>
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<NoRequireAuth><Login /></NoRequireAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
