@@ -1,0 +1,9 @@
+.delete__option {
+display: flex;
+align-items: center;
+gap: 1rem;
+padding-left: 1rem; }
+.delete__option:not(:last-child) {
+margin-bottom: 1rem; }
+    .delete__option-label {
+    cursor: pointer; }
