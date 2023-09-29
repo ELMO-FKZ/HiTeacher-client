@@ -8,6 +8,7 @@ import useConfirm from "../../hooks/useConfirm"
 import useInform from "../../hooks/useInform"
 import attendanceLinks from "../../data/attendanceLinks"
 import deleteOptions from "../../data/deleteOptions"
+import { SERVER_URL } from "../../data/config"
 import "./deleteAttendance.css"
 
 const DeleteAttendance = () => {
@@ -46,7 +47,7 @@ const DeleteAttendance = () => {
             const ans = await confirmDelete()
             if (ans) {
                 try {
-                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${name}/students/attendance/${attDate}/option1`,
+                    const response = await fetch(`${SERVER_URL}/api/classes/${name}/students/attendance/${attDate}/option1`,
                     {
                         method: "DELETE"
                     }
@@ -64,7 +65,7 @@ const DeleteAttendance = () => {
             const ans = await confirmDelete()
             if (ans) {
                 try {
-                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${name}/students/attendance/option2`,
+                    const response = await fetch(`${SERVER_URL}/api/classes/${name}/students/attendance/option2`,
                         {
                             method: "DELETE"
                         }
@@ -81,7 +82,7 @@ const DeleteAttendance = () => {
             const ans = await confirmDelete()
             if (ans) {
                 try {
-                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/attendance/option3`,
+                    const response = await fetch(`${SERVER_URL}/api/classes/students/attendance/option3`,
                         {
                             method: "DELETE"
                         }

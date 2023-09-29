@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import LoginIcon from "@mui/icons-material/Login"
 import CloseIcon from "@mui/icons-material/Close"
 import { useAuthContext } from "../../hooks/useAuthContext"
+import { SERVER_URL } from "../../data/config"
 import "./login.css"
 
 const Login = () => {
@@ -29,7 +30,7 @@ const Login = () => {
     e.preventDefault()
     setError(null)
     try {
-      const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/login`, {
+      const res = await fetch(`${SERVER_URL}/api/login`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",

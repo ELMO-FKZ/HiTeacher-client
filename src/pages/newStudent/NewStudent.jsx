@@ -9,6 +9,7 @@ import genders from "../../data/genders"
 import useInform from "../../hooks/useInform"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { SERVER_URL } from "../../data/config"
 
 const NewStudent = () => {
 
@@ -37,7 +38,7 @@ const NewStudent = () => {
         if (isExist) {
           await informTwo()
         } else {
-          const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/addStudent`, {
+          const res = await fetch(`${SERVER_URL}/api/classes/students/addStudent`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newStudent)

@@ -1,0 +1,1 @@
+export const SERVER_URL = "https://classroom-server-2751.onrender.com"

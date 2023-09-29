@@ -5,6 +5,7 @@ import Tab from "../../components/tab/Tab"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
 import classesLinks from "../../data/classesLinks"
+import { SERVER_URL } from "../../data/config"
 import "./classes.css"
 
 const Classes = () => {
@@ -21,7 +22,7 @@ const Classes = () => {
     const ans = await confirmDelete()
     if (ans) {
       try {
-        const response = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${id}/${name}/deleteClass`,
+        const response = await fetch(`${SERVER_URL}/api/classes/${id}/${name}/deleteClass`,
           {
             method: "DELETE"
           }
