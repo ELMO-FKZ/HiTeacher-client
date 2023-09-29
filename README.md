@@ -56,4 +56,4 @@ This project is licensed under the [MIT License](https://choosealicense.com/lice
 
 ## Contribution
 
-Contributions to Made In Morocco are more than welcome! If you find any bugs, have suggestions for improvements, or want to add new features, please submit an issue or create a pull request on the project repository.
+Contributions to ClassRoom are more than welcome! If you find any bugs, have suggestions for improvements, or want to add new features, please submit an issue or create a pull request on the project repository.
