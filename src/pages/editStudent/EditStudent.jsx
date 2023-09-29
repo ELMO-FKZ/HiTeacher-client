@@ -30,7 +30,7 @@ const EditStudent = () => {
 
   async function getStudent() {
     try {
-        const res = await fetch(`http://localhost:8000/api/classes/students/${params.id}/getStudent`)
+        const res = await fetch(`${SERVER_URL}/api/classes/students/${params.id}/getStudent`)
         if (!res.ok) {
             throw new Error("Failed to fetch data")
         }
