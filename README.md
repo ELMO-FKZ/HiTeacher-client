@@ -29,10 +29,15 @@ Here is a working live demo : https://classroom-kolz.onrender.com/
 ## Features
  
 The key features of ClassRoom app include:
+
 **1. Dashboard:** Upon logging in, teachers are greeted with a personalized dashboard displaying an overview of their classes, student attendance, and statistics.
+
 **2. Class Management:** Teachers can easily create, update, and delete classes.
+
 **3. Student Information Management:** Our system allows teachers to add, view, update, and delete student records. Teachers can store essential student details.
+
 **4. Attendance Tracking:** Teachers can mark students attendance quickly and accurately using the system.
+
 **5. Behavior Registration:** Our system includes a behavior registration feature, allowing teachers to record student behaviors in a structured manner.
 
 
