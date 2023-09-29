@@ -5,7 +5,6 @@ import Tab from "../../components/tab/Tab"
 import useInform from "../../hooks/useInform"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import classesLinks from "../../data/classesLinks"
-import { SERVER_URL } from "../../data/config"
 
 const NewClass = () => {
 
@@ -33,7 +32,7 @@ const NewClass = () => {
           setNewClass("")
         }
       } else {
-        const res = await fetch(`${SERVER_URL}/api/classes/addClass`, {
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/addClass`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

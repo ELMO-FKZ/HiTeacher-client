@@ -4,7 +4,6 @@ import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
 import attendanceLinks from "../../data/attendanceLinks"
 import Tab from "../../components/tab/Tab"
-import { SERVER_URL } from "../../data/config"
 
 const Attendance = () => {
 
@@ -79,7 +78,7 @@ const Attendance = () => {
   }
 
   const editAttHandler = async() => {
-    const res = await fetch(`${SERVER_URL}/api/classes/students/${attObj.studentId}/attendance/${attObj.attId}`, {
+    const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${attObj.studentId}/attendance/${attObj.attId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(attObj)

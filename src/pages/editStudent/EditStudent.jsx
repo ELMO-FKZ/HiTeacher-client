@@ -7,7 +7,6 @@ import studentsInputs from "../../data/studentsInputs"
 import useInform from "../../hooks/useInform"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
-import { SERVER_URL } from "../../data/config"
 
 const EditStudent = () => {
 
@@ -30,7 +29,7 @@ const EditStudent = () => {
 
   async function getStudent() {
     try {
-        const res = await fetch(`${SERVER_URL}/api/classes/students/${params.id}/getStudent`)
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${params.id}/getStudent`)
         if (!res.ok) {
             throw new Error("Failed to fetch data")
         }
@@ -71,7 +70,7 @@ const editStudentHandler = async(e) => {
   }
 
   const editSudent = async() => {
-    const res = await fetch(`${SERVER_URL}/api/classes/students/${params.id}/updateStudent`, {
+    const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${params.id}/updateStudent`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editStudent)

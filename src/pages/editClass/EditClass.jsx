@@ -5,7 +5,6 @@ import Tab from "../../components/tab/Tab"
 import useInform from "../../hooks/useInform"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
-import { SERVER_URL } from "../../data/config"
 
 const EditClass = () => {
 
@@ -41,7 +40,7 @@ const EditClass = () => {
           setEditClass("")
         }
       } else {
-        const res = await fetch(`${SERVER_URL}/api/classes/${params.name}/updateClass`, {
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${params.name}/updateClass`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

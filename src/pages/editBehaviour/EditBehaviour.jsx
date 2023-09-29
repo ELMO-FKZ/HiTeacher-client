@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom"
 import SaveIcon from "@mui/icons-material/Save"
 import { StudentsContext } from "../../contexts/StudentsContext"
 import Tab from "../../components/tab/Tab"
-import { SERVER_URL } from "../../data/config"
 
 const EditBehaviour = () => {
 
@@ -20,7 +19,7 @@ const EditBehaviour = () => {
 
     async function getStudent() {
         try {
-            const res = await fetch(`${SERVER_URL}/api/classes/students/${params.id}/getStudent`)
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${params.id}/getStudent`)
             if (!res.ok) {
                 throw new Error("Failed to fetch data")
             }
@@ -44,7 +43,7 @@ const EditBehaviour = () => {
 
     const editBehaviourHandler = async(e, id) => {
         e.preventDefault()
-        const res = await fetch(`${SERVER_URL}/api/classes/students/${id}/behaviour`, {
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${id}/behaviour`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ behaviour : editBehaviour})

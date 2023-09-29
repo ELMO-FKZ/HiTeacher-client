@@ -4,7 +4,6 @@ import useInform from "../../hooks/useInform"
 import userInputs from "../../data/userInputs"
 import genders from "../../data/genders"
 import roles from "../../data/roles"
-import { SERVER_URL } from "../../data/config"
 
 const NewProfile = () => {
 
@@ -35,7 +34,7 @@ const NewProfile = () => {
         e.preventDefault()
         if(newProfile.gender !== "Choose a gender" && newProfile.role !== "Choose a role") {
             try {
-                const res = await fetch(`${SERVER_URL}/api/register`, {
+                const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/register`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json"},
                     body: JSON.stringify(newProfile)

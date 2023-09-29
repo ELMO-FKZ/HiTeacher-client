@@ -5,7 +5,6 @@ import { StudentsContext } from "../../contexts/StudentsContext"
 import useConfirm from "../../hooks/useConfirm"
 import behaviourLinks from "../../data/behaviourLinks"
 import Tab from "../../components/tab/Tab"
-import { SERVER_URL } from "../../data/config"
 
 const Behaviour = () => {
 
@@ -25,7 +24,7 @@ const Behaviour = () => {
   const deleteBehaviourHandler = async(id) => {
     const ans = await confirmDelete()
     if(ans) {
-      const res = await fetch(`${SERVER_URL}/api/classes/students/${id}/behaviour`, {
+      const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${id}/behaviour`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ behaviour : ""})

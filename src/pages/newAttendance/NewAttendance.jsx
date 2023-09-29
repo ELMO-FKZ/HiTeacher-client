@@ -8,7 +8,6 @@ import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
 import attendanceLinks from "../../data/attendanceLinks"
 import Tab from "../../components/tab/Tab"
-import { SERVER_URL } from "../../data/config"
 
 const NewAttendance = () => {
 
@@ -42,7 +41,7 @@ const NewAttendance = () => {
 
     async function getClassStudents() {
         try {
-        const res = await fetch(`${SERVER_URL}/api/classes/${attClass}/students/getClassStudents`)
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${attClass}/students/getClassStudents`)
         if (!res.ok) {
             throw new Error("Failed to fetch data")
         }
@@ -121,7 +120,7 @@ const NewAttendance = () => {
         e.preventDefault()
         if (Object.keys(newAttValues).length - 2 === classStudents?.length) {
             try {
-                const res = await fetch(`${SERVER_URL}/api/classes/${attClass}/students/attendance`, {
+                const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${attClass}/students/attendance`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(newAttValues)

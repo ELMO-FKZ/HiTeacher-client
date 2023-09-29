@@ -1,5 +1,4 @@
 import { createContext, useState, useMemo } from "react"
-import { SERVER_URL } from "../data/config"
 import PropTypes from "prop-types"
 
 export const StudentsContext = createContext()
@@ -10,7 +9,7 @@ export const StudentsContextProvider = ({ children }) => {
 
     async function getStudents() {
         try {
-            const res = await fetch(`${SERVER_URL}/api/classes/students/getStudents`)
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/getStudents`)
             if (!res.ok) {
                 throw new Error("Failed to fetch data")
             }

@@ -3,7 +3,6 @@ import { Link as LinkRouter } from "react-router-dom"
 import useConfirm from "../../hooks/useConfirm"
 import { StudentsContext } from "../../contexts/StudentsContext"
 import { formatDate } from "../../utils/formatDate"
-import { SERVER_URL } from "../../data/config"
 import PropTypes from "prop-types"
 
 export const StudentsTable = memo(function StudentsTable({studentFilter, studentSearch}) {
@@ -25,7 +24,7 @@ export const StudentsTable = memo(function StudentsTable({studentFilter, student
         const ans = await confirmDelete()
         if (ans) {
             try {
-                const response = await fetch(`${SERVER_URL}/api/classes/students/${id}/deleteStudent`,
+                const response = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${id}/deleteStudent`,
                     {
                         method: "DELETE",
                     }

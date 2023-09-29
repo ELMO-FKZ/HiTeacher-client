@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom"
 import Tab from "../../components/tab/Tab"
 import studentsInputs from "../../data/studentsInputs"
 import { formatDate } from "../../utils/formatDate"
-import { SERVER_URL } from "../../data/config"
 
 const ViewStudent = () => {
 
@@ -18,7 +17,7 @@ const ViewStudent = () => {
 
   async function getStudent() {
       try {
-          const res = await fetch(`${SERVER_URL}/api/classes/students/${params.id}/getStudent`)
+          const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${params.id}/getStudent`)
           if (!res.ok) {
               throw new Error("Failed to fetch data")
           }

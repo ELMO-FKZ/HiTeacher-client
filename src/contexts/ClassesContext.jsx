@@ -1,5 +1,4 @@
 import { createContext, useState, useMemo } from "react"
-import { SERVER_URL } from "../data/config"
 import PropTypes from "prop-types"
 
 export const ClassesContext = createContext()
@@ -10,7 +9,7 @@ export const ClassesContextProvider = ({ children }) => {
 
     async function getClasses() {
         try {
-            const res = await fetch(`${SERVER_URL}/api/classes/getClasses`)
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/getClasses`)
             if (!res.ok) {
                 throw new Error("Failed to fetch data")
             }
