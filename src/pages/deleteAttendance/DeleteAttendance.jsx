@@ -1,8 +1,8 @@
 import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import DeleteIcon from "@mui/icons-material/Delete"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import DeleteIcon from "@mui/icons-material/Delete"
 import Tab from "../../components/tab/Tab"
 import useConfirm from "../../hooks/useConfirm"
 import useInform from "../../hooks/useInform"
@@ -10,7 +10,7 @@ import attendanceLinks from "../../data/attendanceLinks"
 import deleteOptions from "../../data/deleteOptions"
 import "./deleteAttendance.css"
 
-const DeleteAttendance = () => {
+function DeleteAttendance() {
 
     const [ deleteAttOption, setDeleteAttOption ] = useState("")
     const [ deleteAttObj, setDeleteAttObj ] = useState({class: "All classes"})

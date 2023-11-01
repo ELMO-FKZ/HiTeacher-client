@@ -52,6 +52,6 @@ const BarChartComp = memo(function BarChartComp({ classes, allStudents }) {
 export default BarChartComp
 
 BarChartComp.propTypes = {
-    classes: PropTypes.any,
-    allStudents: PropTypes.any
+    classes: PropTypes.array.isRequired,
+    allStudents: PropTypes.array.isRequired
 }

@@ -1,14 +1,14 @@
 import { useState, useEffect, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import { ClassesContext } from "../../contexts/ClassesContext"
+import { StudentsContext } from "../../contexts/StudentsContext"
 import SaveIcon from "@mui/icons-material/Save"
 import Tab from "../../components/tab/Tab"
 import initialize from "../../data/initialize"
 import studentsInputs from "../../data/studentsInputs"
 import useInform from "../../hooks/useInform"
-import { ClassesContext } from "../../contexts/ClassesContext"
-import { StudentsContext } from "../../contexts/StudentsContext"
 
-const EditStudent = () => {
+function EditStudent() {
 
   const { classes } = useContext(ClassesContext)
   const { allStudents, getStudents } = useContext(StudentsContext)

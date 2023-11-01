@@ -32,5 +32,5 @@ export const ClassesContextProvider = ({ children }) => {
 }
 
 ClassesContextProvider.propTypes = {
-    children: PropTypes.any.isRequired
+    children: PropTypes.node.isRequired
 }

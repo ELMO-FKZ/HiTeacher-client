@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import Tab from "../../components/tab/Tab"
 
-const ViewBehaviour = () => {
+function ViewBehaviour() {
 
     const [ student, setStudent ] = useState()
     const params = useParams()

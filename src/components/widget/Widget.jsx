@@ -17,7 +17,7 @@ return (
 export default Widget
 
 Widget.propTypes = {
-    icon: PropTypes.any.isRequired,
-    indicator: PropTypes.any.isRequired,
-    title: PropTypes.any.isRequired
+    icon: PropTypes.element.isRequired,
+    indicator: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired
 }

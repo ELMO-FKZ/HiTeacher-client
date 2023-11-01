@@ -1,8 +1,8 @@
+import { Outlet } from "react-router-dom"
 import SideBar from "../sideBar/SideBar"
 import TopBar from "../topBar/TopBar"
-import { Outlet } from "react-router-dom"
 
-const Layout = () => {
+function Layout() {
 
     return (
         <>

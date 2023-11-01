@@ -31,5 +31,5 @@ export const AuthContextProvider = ({ children }) => {
 }
 
 AuthContextProvider.propTypes = {
-    children: PropTypes.any.isRequired
+    children: PropTypes.node.isRequired
 }

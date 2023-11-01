@@ -3,7 +3,7 @@ import { NavLink, useLocation } from "react-router-dom"
 import PropTypes from "prop-types"
 import "./tab.css"
 
-const Tab = memo(function Tab({tabLinks}) {
+const Tab = memo(function Tab({ tabLinks }) {
 
     const location = useLocation()
     
@@ -27,7 +27,7 @@ const Tab = memo(function Tab({tabLinks}) {
 })
 
 Tab.propTypes = {
-    tabLinks: PropTypes.any.isRequired
+    tabLinks: PropTypes.array.isRequired
 }
 
 export default Tab

@@ -1,12 +1,12 @@
 import { useState, useContext, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
+import { ClassesContext } from "../../contexts/ClassesContext"
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import Tab from "../../components/tab/Tab"
 import useInform from "../../hooks/useInform"
-import { ClassesContext } from "../../contexts/ClassesContext"
 import classesLinks from "../../data/classesLinks"
 
-const NewClass = () => {
+function NewClass() {
 
   const [ newClass, setNewClass ] = useState("")
   const { classes, getClasses } = useContext(ClassesContext)

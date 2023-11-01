@@ -1,4 +1,4 @@
-import { useState, useContext, memo, useCallback } from "react"
+import { useState, useContext, useCallback } from "react"
 import { Link as LinkRouter, useNavigate } from "react-router-dom"
 import { TopSideBarsContext } from "../../contexts/TopSideBarsContext"
 import { useAuthContext } from "../../hooks/useAuthContext"
@@ -12,11 +12,11 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import useInform from "../../hooks/useInform"
 import "./topBar.css"
 
-const TopBar = memo(function TopBar() {
+function TopBar() {
 
-    const [ isMenuShown, setIsMenuShown ] = useState(false)
-    const { setIsShrinking, setIsSideBarShown } = useContext(TopSideBarsContext)
-    const { user } = useAuthContext()
+    const [isMenuShown, setIsMenuShown] = useState(false)
+    const {setIsShrinking, setIsSideBarShown} = useContext(TopSideBarsContext)
+    const {user} = useAuthContext()
     const navigate = useNavigate()
 
     const [Dialog, inform] = useInform(
@@ -79,6 +79,6 @@ const TopBar = memo(function TopBar() {
         <Dialog />
         </>
     )
-})
+}
 
 export default TopBar

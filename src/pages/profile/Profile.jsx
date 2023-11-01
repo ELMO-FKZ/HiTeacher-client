@@ -2,7 +2,7 @@ import { useAuthContext } from "../../hooks/useAuthContext"
 import userInputs from "../../data/userInputs"
 import { formatDate } from "../../utils/formatDate"
 
-const Profile = () => {
+function Profile() {
 
   const { user } = useAuthContext()
 

@@ -1,15 +1,15 @@
-import { useContext, memo, useCallback } from "react"
+import { useContext, useCallback } from "react"
 import { Link as LinkRouter, NavLink } from "react-router-dom"
 import { TopSideBarsContext } from "../../contexts/TopSideBarsContext"
+import { useAuthContext } from "../../hooks/useAuthContext"
 import LogoutIcon from "@mui/icons-material/Logout"
 import sideBarLinks from "../../data/sideBarLinks"
-import { useAuthContext } from "../../hooks/useAuthContext"
 import "./sideBar.css"
 
-const SideBar = memo(function SideBar() {
+function SideBar() {
 
-    const { isShrinking, isSideBarShown, setIsSideBarShown } = useContext(TopSideBarsContext)
-    const { dispatch } = useAuthContext()
+    const {isShrinking, isSideBarShown, setIsSideBarShown} = useContext(TopSideBarsContext)
+    const {dispatch} = useAuthContext()
 
     const handleSideBarClick = useCallback(() => {
         setIsSideBarShown(false)
@@ -54,6 +54,6 @@ const SideBar = memo(function SideBar() {
         </div>
         </>
     )
-})
+}
 
 export default SideBar

@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAuthContext } from "../../hooks/useAuthContext"
 import LoginIcon from "@mui/icons-material/Login"
 import CloseIcon from "@mui/icons-material/Close"
-import { useAuthContext } from "../../hooks/useAuthContext"
 import "./login.css"
 
-const Login = () => {
+function Login() {
 
   const [ isClose, setIsClose ] = useState(false)
   const [ login, setLogin ] = useState({})

@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import Tab from "../../components/tab/Tab"
 
-const NewBehaviour = () => {
+function NewBehaviour() {
 
     const [ student, setStudent ] = useState()
     const [ newBehaviour, setNewBehaviour ] = useState("")

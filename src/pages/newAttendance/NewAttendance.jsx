@@ -1,15 +1,15 @@
 import { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
+import { ClassesContext } from "../../contexts/ClassesContext"
+import { StudentsContext } from "../../contexts/StudentsContext"
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import CloseIcon from "@mui/icons-material/Close"
 import useInform from "../../hooks/useInform"
-import { ClassesContext } from "../../contexts/ClassesContext"
-import { StudentsContext } from "../../contexts/StudentsContext"
 import attendanceLinks from "../../data/attendanceLinks"
 import Tab from "../../components/tab/Tab"
 
-const NewAttendance = () => {
+function NewAttendance() {
 
     const { classes } = useContext(ClassesContext)
     const { getStudents } = useContext(StudentsContext)

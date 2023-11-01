@@ -5,7 +5,7 @@ import userInputs from "../../data/userInputs"
 import genders from "../../data/genders"
 import roles from "../../data/roles"
 
-const NewProfile = () => {
+function NewProfile() {
 
     const [newProfile, setNewProfile] = useState({gender: "Choose a gender", role: "Choose a role"})
 

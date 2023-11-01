@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import notFound from "../../assets/disconnected.webp"
 import "./notFound.css"
 
-const NotFound = () => {
+function NotFound() {
 
   const navigate = useNavigate()
 

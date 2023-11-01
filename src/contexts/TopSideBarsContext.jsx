@@ -31,5 +31,5 @@ export const TopSideBarsContextProvider = ({ children }) => {
 }
 
 TopSideBarsContextProvider.propTypes = {
-    children: PropTypes.any.isRequired
+    children: PropTypes.node.isRequired
 }

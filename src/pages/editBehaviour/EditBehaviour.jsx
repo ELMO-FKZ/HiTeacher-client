@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import SaveIcon from "@mui/icons-material/Save"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import SaveIcon from "@mui/icons-material/Save"
 import Tab from "../../components/tab/Tab"
 
-const EditBehaviour = () => {
+function EditBehaviour() {
 
     const [ student, setStudent ] = useState()
     const [ editBehaviour, setEditBehaviour ] = useState("")

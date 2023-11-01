@@ -1,5 +1,7 @@
 import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
+import { ClassesContext } from "../../contexts/ClassesContext"
+import { StudentsContext } from "../../contexts/StudentsContext"
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import Tab from "../../components/tab/Tab"
 import initialize from "../../data/initialize"
@@ -7,10 +9,8 @@ import studentsInputs from "../../data/studentsInputs"
 import studentsLinks from "../../data/studentsLinks"
 import genders from "../../data/genders"
 import useInform from "../../hooks/useInform"
-import { ClassesContext } from "../../contexts/ClassesContext"
-import { StudentsContext } from "../../contexts/StudentsContext"
 
-const NewStudent = () => {
+function NewStudent() {
 
   const { classes } = useContext(ClassesContext)
   const { allStudents, getStudents } = useContext(StudentsContext)

@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { ClassesContext } from "./contexts/ClassesContext"
 import { StudentsContext } from "./contexts/StudentsContext"
+import { useAuthContext } from "./hooks/useAuthContext"
 import Layout from "./components/layout/Layout"
 import Dashboard from "./pages/dashboard/Dashboard"
 import Profile from "./pages/profile/Profile"
@@ -22,7 +23,6 @@ import ViewBehaviour from "./pages/viewBehaviour/ViewBehaviour"
 import EditBehaviour from "./pages/editBehaviour/EditBehaviour"
 import Login from "./pages/login/Login"
 import NotFound from "./pages/notFound/NotFound"
-import { useAuthContext } from "./hooks/useAuthContext"
 import PropTypes from "prop-types"
 
 function App() {
@@ -93,5 +93,5 @@ function App() {
 export default App
 
 App.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.node
 }

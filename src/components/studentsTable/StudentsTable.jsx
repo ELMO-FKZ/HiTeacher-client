@@ -1,15 +1,15 @@
 import { useContext, memo } from "react"
 import { Link as LinkRouter } from "react-router-dom"
-import useConfirm from "../../hooks/useConfirm"
-import { StudentsContext } from "../../contexts/StudentsContext"
 import { formatDate } from "../../utils/formatDate"
+import { StudentsContext } from "../../contexts/StudentsContext"
+import useConfirm from "../../hooks/useConfirm"
 import PropTypes from "prop-types"
 
-export const StudentsTable = memo(function StudentsTable({studentFilter, studentSearch}) {
+export const StudentsTable = memo(function StudentsTable({ studentFilter, studentSearch }) {
 
-    const { allStudents, getStudents } = useContext(StudentsContext)
+    const {allStudents, getStudents} = useContext(StudentsContext)
 
-    const [ Dialog, confirmDelete ] = useConfirm(
+    const [Dialog, confirmDelete] = useConfirm(
         "Are you sure?",
         "The student will be deleted permanently!"
     )
@@ -85,8 +85,8 @@ export const StudentsTable = memo(function StudentsTable({studentFilter, student
 })
 
 StudentsTable.propTypes = {
-    studentFilter: PropTypes.any,
-    studentSearch: PropTypes.any
+    studentFilter: PropTypes.string.isRequired,
+    studentSearch: PropTypes.string.isRequired
 }
 
 export default StudentsTable

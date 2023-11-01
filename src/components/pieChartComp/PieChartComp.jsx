@@ -2,9 +2,9 @@ import { useState, memo } from "react"
 import { PieChart, Pie, ResponsiveContainer, Sector } from "recharts"
 import PropTypes from "prop-types"
 
-const PieChartComp = memo(function PieChartComp({classes, allStudents}) {
+const PieChartComp = memo(function PieChartComp({ classes, allStudents }) {
 
-    const [ activeIndex, setActiveIndex ] = useState(0)
+    const [activeIndex, setActiveIndex] = useState(0)
     const data = []
 
     for(let i = 0; i < classes?.length; i++) {
@@ -84,6 +84,6 @@ const PieChartComp = memo(function PieChartComp({classes, allStudents}) {
 export default PieChartComp
 
 PieChartComp.propTypes = {
-    classes: PropTypes.any,
-    allStudents: PropTypes.any
+    classes: PropTypes.array.isRequired,
+    allStudents: PropTypes.array.isRequired
 }

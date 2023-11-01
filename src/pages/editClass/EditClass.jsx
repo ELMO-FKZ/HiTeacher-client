@@ -1,12 +1,12 @@
 import { useState, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import { ClassesContext } from "../../contexts/ClassesContext"
+import { StudentsContext } from "../../contexts/StudentsContext"
 import SaveIcon from "@mui/icons-material/Save"
 import Tab from "../../components/tab/Tab"
 import useInform from "../../hooks/useInform"
-import { ClassesContext } from "../../contexts/ClassesContext"
-import { StudentsContext } from "../../contexts/StudentsContext"
 
-const EditClass = () => {
+function EditClass() {
 
   const params = useParams()
   const { classes, getClasses } = useContext(ClassesContext)

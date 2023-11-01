@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { formatDate } from "../../utils/formatDate"
 import Tab from "../../components/tab/Tab"
 import studentsInputs from "../../data/studentsInputs"
-import { formatDate } from "../../utils/formatDate"
 
-const ViewStudent = () => {
+function ViewStudent() {
 
   const params = useParams()
   const [ student, setStudent ] = useState()
