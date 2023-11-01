@@ -1,17 +1,18 @@
 import { useContext, useMemo } from "react"
+import { Link as LinkRouter } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { formatDate } from "../../utils/formatDate"
 import Widget from "../../components/widget/Widget"
 import PieChartComp from "../../components/pieChartComp/PieChartComp"
 import BarChartComp from "../../components/barChartComp/BarChartComp"
-import { formatDate } from "../../utils/formatDate"
 import ViewModuleIcon from "@mui/icons-material/ViewModule"
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1"
 import PersonRemoveAlt1Icon from "@mui/icons-material/PersonRemoveAlt1"
 import GroupsIcon from "@mui/icons-material/Groups"
 import "./dashboard.css"
 
-const Dashboard = () => {
+function Dashboard() {
 
   const today = new Date()
   const date = today.setDate(today.getDate())
@@ -42,10 +43,26 @@ const Dashboard = () => {
         <Widget icon={<PersonAddAlt1Icon />} indicator={todayPr} title="Present Today" />
         <Widget icon={<PersonRemoveAlt1Icon />} indicator={todayAbs} title="Absent Today" />
       </div>
-      <div className="dashboard__charts">
-        <PieChartComp classes={classes} allStudents={allStudents} />
-        <BarChartComp classes={classes} allStudents={allStudents} />
-      </div>
+      {
+        (classes?.length === 0)
+        ?
+        <div className="class-empty">
+          <div className="class-empty__title">Start managing your classes!</div>
+          <div>Click <LinkRouter className="class-empty__span" to="/classes/new" >Add Class</LinkRouter> to create your first class.</div>
+        </div>
+        :
+        (allStudents?.length === 0)
+        ?
+        <div className="class-empty">
+          <div className="class-empty__title">Start managing your Students!</div>
+          <div>Click <LinkRouter className="class-empty__span" to="/students/new" >Add Student</LinkRouter> to insert the information of your first student.</div>
+        </div>
+        :
+        <div className="dashboard__charts">
+          <PieChartComp classes={classes} allStudents={allStudents} />
+          <BarChartComp classes={classes} allStudents={allStudents} />
+        </div>
+      }
     </div>
   )
 }
