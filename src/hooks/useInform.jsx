@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 
 const useInform = (title, message) => {
+    
     const [promise, setPromise] = useState(null)
 
     const inform = () => new Promise((resolve) => {
@@ -26,13 +27,17 @@ const useInform = (title, message) => {
 
     const InformationDialog = () => (
         promise !== null &&
-        <div className="backdrop" onClick={handleOkay} >
+        <div className="backdrop" onClick={(e) => {
+            if (e.target === e.currentTarget) {
+                handleOkay()
+            }
+        }} >
             <div className="modal">
                 <div className="modal__text">
                     <div className="modal__title">{title}</div>
                     <p className="modal__para">{message}</p>
                 </div>
-                <button className="btn small__btn--green" onClick={handleOkay}>Okay</button>
+                <button className="btn small__btn--green btn--modal" onClick={handleOkay}>Okay</button>
             </div>
         </div>
     )

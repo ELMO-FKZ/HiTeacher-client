@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 
 const useConfirm = (title, message) => {
+    
     const [promise, setPromise] = useState(null)
 
     const confirm = () => new Promise((resolve) => {
@@ -31,14 +32,18 @@ const useConfirm = (title, message) => {
 
     const ConfirmationDialog = () => (
         promise !== null &&
-        <div className="backdrop" onClick={handleCancel} >
+        <div className="backdrop" onClick={(e) => {
+            if (e.target === e.currentTarget) {
+                handleCancel()
+            }
+        }} >
             <div className="modal">
                 <div className="modal__text">
                     <div className="modal__title">{title}</div>
                     <p className="modal__para">{message}</p>
                 </div>
-                <button className="btn small__btn--green" onClick={handleConfirm}>Yes</button>
-                <button className="btn small__btn--red" onClick={handleCancel}>Cancel</button>
+                <button className="btn small__btn--green btn--modal" onClick={handleConfirm}>Yes</button>
+                <button className="btn small__btn--red btn--modal" onClick={handleCancel}>Cancel</button>
             </div>
         </div>
     )
