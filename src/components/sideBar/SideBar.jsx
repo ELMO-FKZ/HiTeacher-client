@@ -1,4 +1,4 @@
-import { useContext, useCallback } from "react"
+import { useEffect, useContext, useCallback } from "react"
 import { Link as LinkRouter, NavLink } from "react-router-dom"
 import { TopSideBarsContext } from "../../contexts/TopSideBarsContext"
 import { useAuthContext } from "../../hooks/useAuthContext"
@@ -19,6 +19,14 @@ function SideBar() {
         localStorage.removeItem("user")
         dispatch({ type: "LOGOUT"})
 	}
+
+    useEffect( () => {
+        if(isSideBarShown) {
+            document.body.classList.add("body--modal-open")
+        } else {
+            document.body.classList.remove("body--modal-open")
+        }
+    }, [isSideBarShown])
 
     return (
         <>
