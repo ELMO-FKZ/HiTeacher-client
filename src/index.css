@@ -298,8 +298,7 @@ color: red; }
 #root {
 display: flex;
 width: 100%;
-min-height: 100vh;
-min-height: 100svh; }
+min-height: 100vh; }
 
 .content {
 width: 100%;
