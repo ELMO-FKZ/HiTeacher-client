@@ -3,7 +3,7 @@ import { Link as LinkRouter } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
 import useInform from "../../hooks/useInform"
-import attendanceLinks from "../../data/attendanceLinks"
+import attendanceLinks from "../../variables/attendanceLinks"
 import Tab from "../../components/tab/Tab"
 
 function Attendance() {

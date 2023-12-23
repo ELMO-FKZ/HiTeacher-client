@@ -4,7 +4,7 @@ import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
 import useConfirm from "../../hooks/useConfirm"
 import Tab from "../../components/tab/Tab"
-import classesLinks from "../../data/classesLinks"
+import classesLinks from "../../variables/classesLinks"
 import "./classes.css"
 
 function Classes() {

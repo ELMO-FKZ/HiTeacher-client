@@ -6,7 +6,7 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import CloseIcon from "@mui/icons-material/Close"
 import useInform from "../../hooks/useInform"
-import attendanceLinks from "../../data/attendanceLinks"
+import attendanceLinks from "../../variables/attendanceLinks"
 import Tab from "../../components/tab/Tab"
 
 function NewAttendance() {

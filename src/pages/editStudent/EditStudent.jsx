@@ -4,8 +4,8 @@ import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
 import SaveIcon from "@mui/icons-material/Save"
 import Tab from "../../components/tab/Tab"
-import initialize from "../../data/initialize"
-import studentsInputs from "../../data/studentsInputs"
+import initialize from "../../variables/initialize"
+import studentsInputs from "../../variables/studentsInputs"
 import useInform from "../../hooks/useInform"
 
 function EditStudent() {

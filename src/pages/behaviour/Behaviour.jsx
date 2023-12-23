@@ -3,7 +3,7 @@ import { Link as LinkRouter } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
 import useConfirm from "../../hooks/useConfirm"
-import behaviourLinks from "../../data/behaviourLinks"
+import behaviourLinks from "../../variables/behaviourLinks"
 import Tab from "../../components/tab/Tab"
 
 function Behaviour() {

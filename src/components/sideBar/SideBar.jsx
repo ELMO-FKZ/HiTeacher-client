@@ -3,7 +3,7 @@ import { Link as LinkRouter, NavLink } from "react-router-dom"
 import { TopSideBarsContext } from "../../contexts/TopSideBarsContext"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import LogoutIcon from "@mui/icons-material/Logout"
-import sideBarLinks from "../../data/sideBarLinks"
+import sideBarLinks from "../../variables/sideBarLinks"
 import "./sideBar.css"
 
 function SideBar() {

@@ -4,7 +4,7 @@ import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
 import StudentsTable from "../../components/studentsTable/StudentsTable"
 import Tab from "../../components/tab/Tab"
-import studentsLinks from "../../data/studentsLinks"
+import studentsLinks from "../../variables/studentsLinks"
 
 function Students() {
 

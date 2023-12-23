@@ -1,5 +1,5 @@
 import { useAuthContext } from "../../hooks/useAuthContext"
-import userInputs from "../../data/userInputs"
+import userInputs from "../../variables/userInputs"
 import { formatDate } from "../../utils/formatDate"
 
 function Profile() {

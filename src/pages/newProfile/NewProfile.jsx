@@ -1,9 +1,9 @@
 import { useState } from "react"
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import useInform from "../../hooks/useInform"
-import userInputs from "../../data/userInputs"
-import genders from "../../data/genders"
-import roles from "../../data/roles"
+import userInputs from "../../variables/userInputs"
+import genders from "../../variables/genders"
+import roles from "../../variables/roles"
 
 function NewProfile() {
 

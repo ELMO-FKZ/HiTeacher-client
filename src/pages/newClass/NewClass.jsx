@@ -4,7 +4,7 @@ import { ClassesContext } from "../../contexts/ClassesContext"
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import Tab from "../../components/tab/Tab"
 import useInform from "../../hooks/useInform"
-import classesLinks from "../../data/classesLinks"
+import classesLinks from "../../variables/classesLinks"
 
 function NewClass() {
 

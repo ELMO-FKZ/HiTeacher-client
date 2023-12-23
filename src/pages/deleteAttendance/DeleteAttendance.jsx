@@ -6,8 +6,8 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import Tab from "../../components/tab/Tab"
 import useConfirm from "../../hooks/useConfirm"
 import useInform from "../../hooks/useInform"
-import attendanceLinks from "../../data/attendanceLinks"
-import deleteOptions from "../../data/deleteOptions"
+import attendanceLinks from "../../variables/attendanceLinks"
+import deleteOptions from "../../variables/deleteOptions"
 import "./deleteAttendance.css"
 
 function DeleteAttendance() {
