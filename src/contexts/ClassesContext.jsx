@@ -1,4 +1,5 @@
 import { createContext, useState, useMemo } from "react"
+import { getClassesApi } from "../api/api"
 import PropTypes from "prop-types"
 
 export const ClassesContext = createContext()
@@ -9,11 +10,11 @@ export const ClassesContextProvider = ({ children }) => {
 
     async function getClasses() {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/getClasses`)
-            if (!res.ok) {
+            const response = await getClassesApi()
+            if (!response.ok) {
                 throw new Error("Failed to fetch data")
             }
-            const jsonData = await res.json()
+            const jsonData = await response.json()
             setClasses(jsonData)
         } catch (error) {
             console.log(error)

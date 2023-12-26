@@ -2,30 +2,39 @@ import { memo } from "react"
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts"
 import PropTypes from "prop-types"
 
-const BarChartComp = memo(function BarChartComp({ classes, allStudents }) {
+const BarChartComp = memo(function BarChartComp({ allStudents }) {
 
-    const data = []
+    const classCounts = new Map()
     let totalBoys = 0
     let totalGirls = 0
 
-    for(let i = 0; i < classes?.length; i++) {
-        let countBoys = 0
-        let countGirls = 0
-        for (let j = 0; j < allStudents?.length; j++) {
-            if (classes[i].name == allStudents[j].class && allStudents[j].gender == "Male") {
-                countBoys +=1
-                totalBoys +=1
-            } else if (classes[i].name == allStudents[j].class && allStudents[j].gender == "Female") {
-                countGirls +=1
-                totalGirls +=1
-            }
+    for (let i = 0; i < allStudents?.length; i++) {
+        const student = allStudents[i]
+        if (student.gender === "Male") {
+            totalBoys += 1
+        } else if (student.gender === "Female") {
+            totalGirls += 1
         }
-        data.push({name: `${classes[i].name}`, boys: countBoys, girls: countGirls, total: `${countBoys + countGirls}`})
+        const classCount = classCounts.get(student.class) || { boys: 0, girls: 0 }
+        if (student.gender === "Male") {
+            classCount.boys += 1
+        } else if (student.gender === "Female") {
+            classCount.girls += 1
+        }
+        classCounts.set(student.class, classCount)
     }
-    data.push({name: "Total", boys: totalBoys, girls: totalGirls, total: `${totalBoys + totalGirls}`})
+
+    const data = Array.from(classCounts, ([name, { boys, girls }]) => ({
+        name,
+        boys,
+        girls,
+        total: boys + girls,
+    }))
+
+    data.push({ name: "Total", boys: totalBoys, girls: totalGirls, total: totalBoys + totalGirls })
 
     return (
-        <div className="dashboard__chart-container" > 
+        <div className="dashboard__chart-container">
             <div className="dashboard__chart-title bar-title">Students by gender</div>
             <div className="dashboard__bar-chart">
                 <ResponsiveContainer>
@@ -52,6 +61,5 @@ const BarChartComp = memo(function BarChartComp({ classes, allStudents }) {
 export default BarChartComp
 
 BarChartComp.propTypes = {
-    classes: PropTypes.array.isRequired,
     allStudents: PropTypes.array.isRequired
 }

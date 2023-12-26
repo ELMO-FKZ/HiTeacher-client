@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { addStudentApi } from "../../api/api"
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import Tab from "../../components/tab/Tab"
 import initialize from "../../variables/initialize"
@@ -37,12 +38,8 @@ function NewStudent() {
         if (isExist) {
           await informTwo()
         } else {
-          const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/addStudent`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newStudent)
-          })
-          if(res.ok) {
+          const response = await addStudentApi(newStudent)
+          if(response.ok) {
             getStudents()
             e.target.reset()
             navigate("/students")

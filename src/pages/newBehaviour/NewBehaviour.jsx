@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { addBehaviourApi, getStudentApi } from "../../api/api"
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import Tab from "../../components/tab/Tab"
 
@@ -19,11 +20,11 @@ function NewBehaviour() {
 
     async function getStudent() {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${params.id}/getStudent`)
-            if (!res.ok) {
+            const response = await getStudentApi(params.id)
+            if (!response.ok) {
                 throw new Error("Failed to fetch data")
             }
-            const jsonData = await res.json()
+            const jsonData = await response.json()
             setStudent(jsonData)
         } catch (error) {
             console.log(error)
@@ -41,14 +42,14 @@ function NewBehaviour() {
 
     const addNewBehaviourHandler = async(e, id) => {
         e.preventDefault()
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${id}/behaviour`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ behaviour : newBehaviour})
-        })
-        if(res.ok) {
-            getStudents()
-            navigate("/behaviour")
+        try {
+            const response = await addBehaviourApi(id, newBehaviour)
+            if(response.ok) {
+                getStudents()
+                navigate("/behaviour")
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 

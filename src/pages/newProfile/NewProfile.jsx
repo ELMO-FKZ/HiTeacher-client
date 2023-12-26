@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { registerApi } from "../../api/api"
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import useInform from "../../hooks/useInform"
 import userInputs from "../../variables/userInputs"
@@ -34,19 +35,14 @@ function NewProfile() {
         e.preventDefault()
         if(newProfile.gender !== "Choose a gender" && newProfile.role !== "Choose a role") {
             try {
-                const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/register`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json"},
-                    body: JSON.stringify(newProfile)
-                })
-                if(res.ok) {
+                const response = await registerApi(newProfile)
+                if(response.ok) {
                     const ans = await informTwo()
                     if(!ans) {
                         e.target.reset()
                         setNewProfile({gender: "Choose a gender", role: "Choose a role"})
                     }
-                }
-                if(!res.ok) {
+                } else if(!response.ok) {
                     await informThree()
                 }
             } catch (error) {

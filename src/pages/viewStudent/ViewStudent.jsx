@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { formatDate } from "../../utils/formatDate"
+import { getStudentApi } from "../../api/api"
 import Tab from "../../components/tab/Tab"
 import studentsInputs from "../../variables/studentsInputs"
 
@@ -16,16 +17,16 @@ function ViewStudent() {
   ]
 
   async function getStudent() {
-      try {
-          const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${params.id}/getStudent`)
-          if (!res.ok) {
-              throw new Error("Failed to fetch data")
-          }
-          const jsonData = await res.json()
-          setStudent(jsonData)
-      } catch (error) {
-          console.log(error)
+    try {
+      const response = await getStudentApi(params.id)
+      if (!response.ok) {
+        throw new Error("Failed to fetch data")
       }
+      const jsonData = await response.json()
+      setStudent(jsonData)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {

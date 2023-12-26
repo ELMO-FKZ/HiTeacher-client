@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import { Link as LinkRouter } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { deleteBehaviourApi } from "../../api/api"
 import useConfirm from "../../hooks/useConfirm"
 import behaviourLinks from "../../variables/behaviourLinks"
 import Tab from "../../components/tab/Tab"
@@ -24,13 +25,13 @@ function Behaviour() {
   const deleteBehaviourHandler = async(id) => {
     const ans = await confirmDelete()
     if(ans) {
-      const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${id}/behaviour`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ behaviour : ""})
-      })
-      if(res.ok) {
-        getStudents()
+      try {
+        const response = await deleteBehaviourApi(id);
+        if(response.ok) {
+          getStudents()
+        }
+      } catch (error) {
+        console.log(error)
       }
     }
   }

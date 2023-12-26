@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { editBehaviourApi, getStudentApi } from "../../api/api"
 import SaveIcon from "@mui/icons-material/Save"
 import Tab from "../../components/tab/Tab"
 
@@ -19,11 +20,11 @@ function EditBehaviour() {
 
     async function getStudent() {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${params.id}/getStudent`)
-            if (!res.ok) {
+            const response = await getStudentApi(params.id)
+            if (!response.ok) {
                 throw new Error("Failed to fetch data")
             }
-            const jsonData = await res.json()
+            const jsonData = await response.json()
             setStudent(jsonData)
             setEditBehaviour(jsonData.behaviour)
         } catch (error) {
@@ -43,14 +44,14 @@ function EditBehaviour() {
 
     const editBehaviourHandler = async(e, id) => {
         e.preventDefault()
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${id}/behaviour`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ behaviour : editBehaviour})
-        })
-        if(res.ok) {
-            getStudents()
-            navigate("/behaviour")
+        try {
+            const response = await editBehaviourApi(id, editBehaviour)
+            if(response.ok) {
+                getStudents()
+                navigate("/behaviour")
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 

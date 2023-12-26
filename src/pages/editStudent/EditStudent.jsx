@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { editStudentApi, getStudentApi } from "../../api/api"
 import SaveIcon from "@mui/icons-material/Save"
 import Tab from "../../components/tab/Tab"
 import initialize from "../../variables/initialize"
@@ -29,14 +30,14 @@ function EditStudent() {
 
   async function getStudent() {
     try {
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${params.id}/getStudent`)
-        if (!res.ok) {
-            throw new Error("Failed to fetch data")
-        }
-        const jsonData = await res.json()
-        setEditStudent(jsonData)
+      const response = await getStudentApi(params.id)
+      if (!response.ok) {
+        throw new Error("Failed to fetch data")
+      }
+      const jsonData = await response.json()
+      setEditStudent(jsonData)
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
 }
 
@@ -65,33 +66,35 @@ const editStudentHandler = async(e) => {
       editSudent()
     }
     } catch(error) {
-        console.log(error)
+      console.log(error)
     }
   }
 
   const editSudent = async() => {
-    const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${params.id}/updateStudent`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(editStudent)
-    })
-    if(res.ok) {
-      getStudents()
-      navigate("/students")
+    try {
+      const res = await editStudentApi(params.id, editStudent)
+      if(res.ok) {
+        getStudents()
+        navigate("/students")
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
   function submitEditStudentHandler(e) {
     editStudentHandler(e, editStudent.id)
-    
   }
 
 function formatDate(date){
-    const originalDate = new Date(date)
-    const dd = (originalDate.getDate() < 10 ? "0" : "") + originalDate.getDate()
-    const MM = ((originalDate.getMonth() + 1) < 10 ? "0" : "") + (originalDate.getMonth() + 1)
-    let yyyy = originalDate.getFullYear()
-    return yyyy + "-" + MM + "-" + dd
+  if (isNaN(Date.parse(date))) {
+    return ""
+  }
+  const originalDate = new Date(date)
+  const dd = (originalDate.getDate() < 10 ? "0" : "") + originalDate.getDate()
+  const MM = ((originalDate.getMonth() + 1) < 10 ? "0" : "") + (originalDate.getMonth() + 1)
+  let yyyy = originalDate.getFullYear()
+  return yyyy + "-" + MM + "-" + dd
 }
 
   return (

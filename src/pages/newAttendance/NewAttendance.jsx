@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { addAttendanceApi, getStudentsClassApi } from "../../api/api"
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import CloseIcon from "@mui/icons-material/Close"
@@ -41,12 +42,12 @@ function NewAttendance() {
 
     async function getClassStudents() {
         try {
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${attClass}/students/getClassStudents`)
-        if (!res.ok) {
-            throw new Error("Failed to fetch data")
-        }
-        const jsonData = await res.json()
-        setClassStudents(jsonData)
+            const response = await getStudentsClassApi(attClass)
+            if (!response.ok) {
+                throw new Error("Failed to fetch data")
+            }
+            const jsonData = await response.json()
+            setClassStudents(jsonData)
         } catch (error) {
             console.log(error)
         }
@@ -120,12 +121,8 @@ function NewAttendance() {
         e.preventDefault()
         if (Object.keys(newAttValues).length - 2 === classStudents?.length) {
             try {
-                const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${attClass}/students/attendance`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(newAttValues)
-                })
-                if(res.ok) {
+                const response = await addAttendanceApi(attClass, newAttValues)
+                if(response.ok) {
                     getStudents()
                     setIsNext(false)
                     setNewAttValues({})

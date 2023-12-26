@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import { Link as LinkRouter } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { editAttendanceApi } from "../../api/api"
 import useInform from "../../hooks/useInform"
 import attendanceLinks from "../../variables/attendanceLinks"
 import Tab from "../../components/tab/Tab"
@@ -79,14 +80,14 @@ function Attendance() {
   }
 
   const editAttHandler = async() => {
-    const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${attObj.studentId}/attendance/${attObj.attId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(attObj)
-    })
-    if(res.ok) {
-      getStudents()
-      setStudentId("")
+    try {
+      const response = await editAttendanceApi(attObj)
+      if(response.ok) {
+        getStudents()
+        setStudentId("")
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 

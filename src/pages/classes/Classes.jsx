@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { Link as LinkRouter } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { deleteClassApi } from "../../api/api"
 import useConfirm from "../../hooks/useConfirm"
 import Tab from "../../components/tab/Tab"
 import classesLinks from "../../variables/classesLinks"
@@ -21,11 +22,7 @@ function Classes() {
     const ans = await confirmDelete()
     if (ans) {
       try {
-        const response = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${id}/${name}/deleteClass`,
-          {
-            method: "DELETE"
-          }
-        )
+        const response = await deleteClassApi(id, name)
         if (response.ok) {
           getClasses()
           getStudents()

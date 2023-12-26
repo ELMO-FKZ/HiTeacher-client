@@ -2,6 +2,7 @@ import { useContext, memo } from "react"
 import { Link as LinkRouter } from "react-router-dom"
 import { formatDate } from "../../utils/formatDate"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { deleteStudentApi } from "../../api/api"
 import useConfirm from "../../hooks/useConfirm"
 import PropTypes from "prop-types"
 
@@ -24,11 +25,7 @@ export const StudentsTable = memo(function StudentsTable({ studentFilter, studen
         const ans = await confirmDelete()
         if (ans) {
             try {
-                const response = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/${id}/deleteStudent`,
-                    {
-                        method: "DELETE",
-                    }
-                )
+                const response = await deleteStudentApi(id)
                 if (response.ok) {
                     getStudents()
                 }

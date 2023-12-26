@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { editClassApi } from "../../api/api"
 import SaveIcon from "@mui/icons-material/Save"
 import Tab from "../../components/tab/Tab"
 import useInform from "../../hooks/useInform"
@@ -40,14 +41,8 @@ function EditClass() {
           setEditClass("")
         }
       } else {
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${params.name}/updateClass`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: editClass
-          })
-        })
-        if(res.ok) {
+        const response = await editClassApi(params.name, editClass)
+        if(response.ok) {
           getClasses()
           getStudents()
           navigate("/classes")

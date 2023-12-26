@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
+import { clearAttendanceApi, deleteAttendanceClassApi, deleteAttendanceClassDayApi } from "../../api/api"
 import DeleteIcon from "@mui/icons-material/Delete"
 import Tab from "../../components/tab/Tab"
 import useConfirm from "../../hooks/useConfirm"
@@ -46,11 +47,7 @@ function DeleteAttendance() {
             const ans = await confirmDelete()
             if (ans) {
                 try {
-                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${name}/students/attendance/${attDate}/option1`,
-                    {
-                        method: "DELETE"
-                    }
-                    )
+                    const response = await deleteAttendanceClassDayApi(name, attDate)
                     if (response.ok) {
                         getStudents()
                         navigate("/attendance")
@@ -64,11 +61,7 @@ function DeleteAttendance() {
             const ans = await confirmDelete()
             if (ans) {
                 try {
-                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/${name}/students/attendance/option2`,
-                        {
-                            method: "DELETE"
-                        }
-                    )
+                    const response = await deleteAttendanceClassApi(name)
                     if (response.ok) {
                         getStudents()
                         navigate("/attendance")
@@ -81,11 +74,7 @@ function DeleteAttendance() {
             const ans = await confirmDelete()
             if (ans) {
                 try {
-                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/students/attendance/option3`,
-                        {
-                            method: "DELETE"
-                        }
-                    )
+                    const response = await clearAttendanceApi()
                     if (response.ok) {
                         getStudents()
                         navigate("/attendance")

@@ -1,6 +1,7 @@
 import { useState, useContext, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
+import { addClassApi } from "../../api/api"
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd"
 import Tab from "../../components/tab/Tab"
 import useInform from "../../hooks/useInform"
@@ -32,14 +33,8 @@ function NewClass() {
           setNewClass("")
         }
       } else {
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/classes/addClass`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: newClass
-          })
-        })
-        if(res.ok) {
+        const response = await addClassApi(newClass)
+        if(response.ok) {
           getClasses()
           setNewClass("")
           navigate("/classes")

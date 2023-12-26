@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react"
+import { useContext, useRef, useMemo } from "react"
 import { Link as LinkRouter } from "react-router-dom"
 import { ClassesContext } from "../../contexts/ClassesContext"
 import { StudentsContext } from "../../contexts/StudentsContext"
@@ -19,20 +19,21 @@ function Dashboard() {
   const defaultValue = new Date(date).toISOString().split("T")[0]
   const { classes } = useContext(ClassesContext)
   const { allStudents } = useContext(StudentsContext)
-  let todayAbs = 0
-  let todayPr = 0
+  const todayAbsRef = useRef(0)
+  const todayPrRef = useRef(0)
 
   useMemo(() => {
+    todayAbsRef.current = 0
     for(let i = 0; i < allStudents?.length; i++) {
       for (let j = 0; j < allStudents[i].attendance.length; j++) {
         if (formatDate(allStudents[i].attendance[j].date) == defaultValue && allStudents[i].attendance[j].aHours !== 0) {
-          todayAbs += 1
+          todayAbsRef.current += 1
         } else if (formatDate(allStudents[i].attendance[j].date) == defaultValue && allStudents[i].attendance[j].aHours == 0) {
-          todayPr += 1
+          todayPrRef.current += 1
         }
       }
     }
-  },[allStudents])
+  },[allStudents, defaultValue])
 
   return (
     <div className="content-wrapper md-120">
@@ -40,8 +41,8 @@ function Dashboard() {
       <div className="dashboard__cards">
         <Widget icon={<ViewModuleIcon />} indicator={classes?.length} title="Total Classes" />
         <Widget icon={<GroupsIcon />} indicator={allStudents?.length} title="Total Students" />
-        <Widget icon={<PersonAddAlt1Icon />} indicator={todayPr} title="Present Today" />
-        <Widget icon={<PersonRemoveAlt1Icon />} indicator={todayAbs} title="Absent Today" />
+        <Widget icon={<PersonAddAlt1Icon />} indicator={todayPrRef.current} title="Present Today" />
+        <Widget icon={<PersonRemoveAlt1Icon />} indicator={todayAbsRef.current} title="Absent Today" />
       </div>
       {
         (classes?.length === 0)
@@ -59,8 +60,8 @@ function Dashboard() {
         </div>
         :
         <div className="dashboard__charts">
-          <PieChartComp classes={classes} allStudents={allStudents} />
-          <BarChartComp classes={classes} allStudents={allStudents} />
+          <PieChartComp allStudents={allStudents} />
+          <BarChartComp allStudents={allStudents} />
         </div>
       }
     </div>

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuthContext } from "../../hooks/useAuthContext"
+import { loginApi } from "../../api/api"
 import LoginIcon from "@mui/icons-material/Login"
 import CloseIcon from "@mui/icons-material/Close"
 import "./login.css"
@@ -29,20 +30,13 @@ function Login() {
     e.preventDefault()
     setError(null)
     try {
-      const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/login`, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(login)
-      })
-      const jsonData = await res.json()
-      if (res.ok) {
+      const response = await loginApi(login)
+      const jsonData = await response.json()
+      if (response.ok) {
         localStorage.setItem("user", JSON.stringify(jsonData))
         dispatch({ type: "LOGIN", payload: jsonData})
         navigate("/")
-      } 
-      if(!res.ok) {
+      } else if (!response.ok) {
         setError(jsonData.error)
       }
     } catch (error) {
